@@ -1,0 +1,49 @@
+<ion-content padding>
+	<h1>Choose your favorite fruits!</h1>
+
+	<!-- Choose Fruit -->
+	<div class="row">
+		<div>
+			<p>Red</p>
+			<div *ngFor="let item of redList">
+				<label class="container">{{item.name}}
+      <input type="radio" name="fruit" [value]="{id: item.id, name: item.name}" [(ngModel)]="fruit" (click)="promotionList = yellowList; demotionList = [];">
+      <span class="checkmark"></span>
+      </label>
+			</div>
+		</div>
+		<div>
+			<p>Yellow</p>
+			<div *ngFor="let item of yellowList">
+				<label class="container">{{item.name}}
+      <input type="radio" name="fruit" [value]="{id: item.id, name: item.name, status: item.status}" [(ngModel)]="fruit" (click)="promotionList = blueList; demotionList = redList;">
+      <span class="checkmark"></span>
+      </label>
+			</div>
+		</div>
+		<div>
+			<p>Blue</p>
+			<div *ngFor="let item of blueList">
+				<label class="container">{{item.name}}
+      <input type="radio" name="fruit" [value]="{id: item.id, name: item.name, status: item.status}" [(ngModel)]="fruit" (click)="promotionList = []; demotionList = yellowList;">
+      <span class="checkmark"></span>
+      </label>
+			</div>
+		</div>
+	</div>
+
+	<label>Your choice is {{ fruit.status }}</label>
+	<br>
+	<label>Demotion</label>
+	<select [(ngModel)]="agentDemotion">
+  <option *ngFor="let demotion of demotionList" [ngValue]="demotion.id">{{ demotion.name }}</option>
+</select>
+	<br>
+	<label>Promotion</label>
+	<select [(ngModel)]="agentPromotion">
+  <option *ngFor="let promotion of promotionList" [ngValue]="promotion.id">{{ promotion.name }}</option>
+</select>
+	<br>
+	<label>id_agent = {{ agentDemotion }}</label><br>
+	<label>id_agent = {{ agentPromotion }}</label>
+</ion-content>
